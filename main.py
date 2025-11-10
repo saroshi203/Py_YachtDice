@@ -80,26 +80,27 @@ def dice_roll():
    return(rolled)
 
 def Aces():
-   pass
+   return (dices.count(1)*1)
 
 def Deuces():
-   pass
+   return (dices.count(2)*2)
 
 def Threes():
-   pass
+   return (dices.count(3)*3)
 
 def Fours():
-   pass
+   return (dices.count(4)*4)
 
 def Fives():
-   pass
+   return (dices.count(5)*5)
 
 def Sixs():
-   pass
+   return (dices.count(6)*6)
+
 
 
 def Choice():
-   pass
+    return sum(dices)
 
 def Four_of_a_kind():
     for i in set(dices): # 중복 제거한 각각 요소 검사
@@ -127,3 +128,4 @@ def Yacht():
       return 50
    else:
       return 0
+
