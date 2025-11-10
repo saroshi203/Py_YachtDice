@@ -65,37 +65,37 @@ score = [[0, True] for _ in range(12)] # [점수, 입력가능/불가능]
 #현재 주사위 상황 새로고침
 #주사위에 변동이 있을경우 실행하여 dices 리스트 초기화및 반영
 def dices_now(): 
-   global dices
-   dices.clear()
-   for i in range (1,6):
-      if hand_field[i] != 0:
-         dices.append(hand_field[i])
-      if hold_field[i] != 0:
-         dices.append(hold_field[i])
-   dices = sorted(dices)
+    global dices
+    dices.clear()
+    for i in range (1,6):
+       if hand_field[i] != 0:
+          dices.append(hand_field[i])
+       if hold_field[i] != 0:
+          dices.append(hold_field[i])
+    dices = sorted(dices)
 
 # 주사위 굴리기
 def dice_roll(): 
-   rolled = random.randint(1,6)
-   return(rolled)
+    rolled = random.randint(1,6)
+    return(rolled)
 
 def Aces():
-   return (dices.count(1)*1)
+    return (dices.count(1)*1)
 
 def Deuces():
-   return (dices.count(2)*2)
+    return (dices.count(2)*2)
 
 def Threes():
-   return (dices.count(3)*3)
+    return (dices.count(3)*3)
 
 def Fours():
-   return (dices.count(4)*4)
+    return (dices.count(4)*4)
 
 def Fives():
-   return (dices.count(5)*5)
+    return (dices.count(5)*5)
 
 def Sixs():
-   return (dices.count(6)*6)
+    return (dices.count(6)*6)
 
 
 
@@ -118,14 +118,14 @@ def FullHouse():
         return 0
 
 def S_Straight():
-   pass
+    pass
 
 def L_Straight():
-   pass
+    pass
 
 def Yacht():
-   if len(set(dices))==1:
-      return 50
-   else:
-      return 0
+    if len(set(dices))==1:
+        return 50
+    else:
+        return 0
 
