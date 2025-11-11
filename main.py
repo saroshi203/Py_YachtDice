@@ -118,14 +118,21 @@ def FullHouse():
         return 0
 
 def S_Straight():
-    pass
+    dice_set = set(dices)
+    patterns = [{1,2,3,4}, {2,3,4,5}, {3,4,5,6}]
+    for pattern in patterns:
+        if pattern.issubset(dice_set): # a.issubset(b) 메서드는 a가 b안에 존재하는지 판별함
+            return 15
+    return 0
 
 def L_Straight():
-    pass
+    dice_set = set(dices)
+    if {1,2,3,4,5}.issubset(dice_set) or {2,3,4,5,6}.issubset(dice_set):
+        return 30
+    return 0
 
 def Yacht():
     if len(set(dices))==1:
         return 50
-    else:
-        return 0
+    return 0
 
