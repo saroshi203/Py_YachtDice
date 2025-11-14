@@ -1,6 +1,5 @@
 # 족보는 닌텐도의 "세계 게임전집 51" 의 것을 사용함
 
-# git이 아직 별로 안익숙해져서 함수 추가한거 반영시키고 하는 과정에서 제강님이 커밋한거 로그 실수로 지워버렸어요 :(
 
 # 리롤 기능 구상안:
 # 딕셔너리에서 키를 이용하여 홀드/홀드 헤제할 다이스 선택
@@ -8,6 +7,8 @@
 # 값을 건너편 딕셔너리로 옮기고, 기존값을 0으로 설정
 # 리롤 후 리롤 카운트 -1, 리롤 카운트가 0일경우 리롤 불가능
 # 점수 입력 후 리롤 카운트 초기화
+
+# 리롤 후에 손패랑 홀드 오름차순 정렬하기 < 가능하면
 
 import random
 
@@ -58,13 +59,19 @@ hold_field = {1 : 0,
               3 : 0,
               4 : 0,
               5 : 0} #홀드
+
 reroll_count = 2
 
 score = [[0, True] for _ in range(12)] # [점수, 입력가능/불가능]
+# 점수판 인덱스값
+# 0:Aces | 1:Deuces | 2:Threes | 3:Fours | 4:Fives | 5:Sixs
+# 6:Choice | 7:Four of a kind | 8:FullHouse | 9:S Straight | 10:L Straight | 11:Yacht
 
-#현재 주사위 상황 새로고침
+
+# --------------- 현재 주사위 새로고침 ---------------
 #주사위에 변동이 있을경우 실행하여 dices 리스트 초기화및 반영
-def dices_now(): 
+
+def dice_refresh(): 
     global dices
     dices.clear()
     for i in range (1,6):
@@ -74,10 +81,29 @@ def dices_now():
           dices.append(hold_field[i])
     dices = sorted(dices)
 
-# 주사위 굴리기
+# --------------- 주사위 굴리기 ---------------
+
 def dice_roll(): 
     rolled = random.randint(1,6)
     return(rolled)
+
+# --------------- 턴 첫번째 굴리기 ---------------
+# 임시 리스트에 주사위 5개 굴리고 오름차순 정렬후 정렬된 값을 손패에 반영
+
+def first_roll():
+    global hand_field
+    temp_dices = [dice_roll() for _ in range(5)]
+    temp_dices.sort()
+    for pos in range(1,6):
+        hand_field[pos] = temp_dices[pos-1]
+    dice_refresh()
+
+# --------------- 리롤 및 정렬 ---------------
+
+def reroll():
+    pass
+
+# --------------- 점수 계산식 ---------------
 
 def Aces():
     return (dices.count(1)*1)
@@ -135,4 +161,3 @@ def Yacht():
     if len(set(dices))==1:
         return 50
     return 0
-
