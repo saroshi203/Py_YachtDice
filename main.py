@@ -34,7 +34,7 @@
 # 총: 0점
 # ==================================================
 #
-# [301] Hold | [302] Reroll 
+# [301] Hold | [401] Reroll 
 
 import random
 
@@ -98,7 +98,8 @@ score = [[0, True] for _ in range(12)] # [점수, 입력가능/불가능]
 # [101] Aces | [102] Deuces | [103] Threes | [104] Fours | [105] Fives | [106] Sixs
 # [201] Choice | [202] Four of a kind | [203] FullHouse | [204] S Straight | [205] L Straight | [206] Yacht
 #
-# [301] Hold | [302] Reroll 
+# [301] Hold 
+# [401] Reroll 
 
 
 # --------------- 현재 주사위 새로고침 ---------------
@@ -403,9 +404,9 @@ def print_commands(roll_count):
     print(f"\n{Colors.CYAN}[ 리롤 횟수: {roll_count}/3 ]{Colors.RESET}")
     print("-" * 40)
     if roll_count < 3:
-        print(f"[301] 홀드 설정/해제  |  [302] 리롤")
+        print(f"[301] 홀드 설정/해제\n[401] 리롤")
     else:
-        print(f"[301] 홀드 설정/해제  |  {Colors.RED}[302] 리롤 (횟수 소진){Colors.RESET}")
+        print(f"[301] 홀드 설정/해제  |  {Colors.RED}[401] 리롤 (횟수 소진){Colors.RESET}")
     print("[101~106] 상단 섹션에 점수 입력")
     print("[201~206] 하단 섹션에 점수 입력")
     print("-" * 40)
@@ -537,7 +538,7 @@ def main():
             
             # 커맨드 입력
             try:
-                cmd = input("\n커맨드 입력: ").strip()
+                cmd = input("\n> ").strip()
                 if not cmd:
                     continue
                 cmd = int(cmd)
@@ -548,7 +549,7 @@ def main():
             # 커맨드 처리
             if cmd == 301:  # 홀드
                 hold()
-            elif cmd == 302:  # 리롤
+            elif cmd == 401:  # 리롤
                 if roll_count >= 3:
                     print(f"{Colors.RED}리롤 횟수를 모두 사용했습니다. 점수를 입력해주세요.{Colors.RESET}")
                 else:
@@ -557,7 +558,7 @@ def main():
                 if enter_score(cmd):
                     turn_complete = True
             else:
-                print(f"{Colors.RED}잘못된 커맨드입니다. (101~106, 201~206, 301, 302){Colors.RESET}")
+                print(f"{Colors.RED}잘못된 커맨드입니다. (101~106, 201~206, 301, 401){Colors.RESET}")
     
     # 게임 종료
     print_final_result()
